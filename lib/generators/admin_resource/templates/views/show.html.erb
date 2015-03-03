@@ -1,0 +1,6 @@
+.well
+  p
+    <% attributes.each do |at| %>
+    = "#{<%= file_name.classify %>.human_attribute_name(:<%= at.name %>)}:"
+    = resource.<%= at.name %>
+  <% end %>

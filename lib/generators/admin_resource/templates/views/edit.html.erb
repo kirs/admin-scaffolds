@@ -1,0 +1,8 @@
+ul.breadcrumb
+  li
+    = link_to '<%= file_name.pluralize.humanize %>', [:admin, :<%= file_name.underscore.pluralize %>]
+    span.divider
+      | /
+  li.active= resource.id
+
+= render 'form'

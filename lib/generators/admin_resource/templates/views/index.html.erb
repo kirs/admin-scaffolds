@@ -1,0 +1,27 @@
+ul.breadcrumb
+  li.active <%= file_name.pluralize.humanize %>
+
+p= link_to "Добавить <%= file_name.singularize.humanize %>", [:new, :admin, :<%= file_name.singularize.parameterize %>], class: "btn"
+
+table.table.table-striped
+  thead
+    tr
+      th ID
+      <% attributes.each do |at| %>
+      th= <%= file_name.classify %>.human_attribute_name(:<%= at.name %>)<% end %>
+
+  tbody
+    - collection.each do |<%= file_name.singularize.underscore %>|
+      tr
+        <% if options[:actions].present? && options[:actions].include?("show") %>
+        td= link_to <%= file_name.singularize.underscore %>.id, [:admin, <%= file_name.singularize.underscore %>]<% else %>
+        td= <%= file_name.singularize.underscore %>.id<% end %>
+        <% attributes.each do |at| %>
+        td= <%= file_name.singularize.underscore %>.<%= at.name %><% end %>
+        td
+          <% if options[:actions].nil? || (options[:actions].present? && options[:actions].include?("edit")) %>
+          =' link_to "Редактировать", [:edit, :admin, <%= file_name.singularize.underscore %>], class: "btn"
+          <% end %>
+          =' link_to "Удалить", [:admin, <%= file_name.singularize.underscore %>], method: :delete, data: {confirm: t("admin.confirm_destroy")}, class: "btn btn-danger"
+
+= paginate collection

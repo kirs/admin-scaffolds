@@ -1,0 +1,13 @@
+Description:
+    Explain the generator
+
+Example:
+    rails generate admin_resource Thing name description --actions show index update new edit create
+
+    This will create:
+        app/controllers/admin/things_controller.rb
+        app/views/admin/things/_form.html.slim
+        app/views/admin/things/edit.html.slim
+        app/views/admin/things/index.html.slim
+        app/views/admin/things/new.html.slim
+        app/views/admin/things/show.html.slim
